@@ -1,7 +1,9 @@
 body{
 	color: green;
 	direction: ltr;
-	width: 900px;
+	
+		width: 100%;
+	
 	height:auto;
 }
  .box{
@@ -10,3 +12,53 @@ body{
 	padding:5px;
 	text-align:center;
  }
+
+#map{
+	
+	width:100%; 
+	height: 500px;
+}
+
+input{
+
+}
+
+.name a{
+color:green;	
+text-decoration: none;
+font-size: 18px;
+font-family: 'Arial';
+}
+
+#foo{
+	display: none
+}
+
+button a{
+	color:green;
+	text-decoration: none;
+}
+
+
+img{
+	
+	width:200px; 
+	height:200px;
+}
+
+.card-panel{
+	text-align:center;
+	margin:10px;
+	padding:0 !important;
+	width: 31% !important;
+}
+
+.main-panel{
+	
+	margin:0 !important;
+	padding: 0 !important;
+}
+
+.panel{
+	margin: 5px !important;
+}

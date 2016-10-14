@@ -4,9 +4,12 @@
 	ccc.controller('myContl',myContl);
 	
 	function myContl ($scope,$http) {
- $scope.chabad = [
+	
+	 $scope.chabad = [
 
         {
+        	id: 1,
+        	
             name: 'הרב  דובי גינצבורג ',
             
             address:'נורדאו 30, חיפה 33124, ישראל ',
@@ -17,7 +20,8 @@
        },
 
         {
-
+			id: 2,
+			
             name: ' הרב ישי קלי',
             
             address:'הקלעים 4, בת גלים, חיפה 3501405, ישראל',
@@ -29,19 +33,21 @@
         },
 
         {
+        	id:3,
+        	
             name: 'יהודה דונין',
             
             address:'חורב 15, אחוזה כרמל, חיפה 33000, ישראל ',
 
             tel: '04-8112770',
 
-            img: '1-250.jpg'
+            img:  'הורד.jpg'
             
          },
 
         {
 
-             name: 'הרב שאול דוד בורשטיין(דוברי רוסית ',
+             name:' הרב שאול דוד בורשטיין(דוברי רוסית ',
             
             address:'הרצל 56, חיפה, ישראל',
 
@@ -90,7 +96,7 @@
 
             tel: '077-4030026',
 
-            img: 'images.png'
+            img:  'הורד.jpg'
         },
 
         {
@@ -133,15 +139,76 @@
 
             name: 'הרב יוסף יצחק רוזנברג',
 
-            address:'  שדרות שיקגו קרית הטכניון חיפה 32000 Israel',
+            address:'  שדרות שיקגו קרית הטכניון חיפה 32000 ישראל',
 
             tel: '04-8222268',
 
             img: 'הורד (2).jpg' 
 
         },
+        
+      
 
 ];
-	}
+
+$scope.display = function(id){
+	console.log(id);
+	$scope.details = id;
 }
+
+$scope.findOnMap = function(address){
+	var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+}
+	}
+
 )();
+
