@@ -25,7 +25,7 @@
 	</head>
 
 	<body>
-		<div class="row main-panel" ng-controller="myContl map">
+		<div class="row main-panel" ng-controller="myContl">
 			חפש
 			<input placeholder="חפש בית חבד " ng-model="query" />
 			<br/>
@@ -86,7 +86,7 @@
 					</div>
 				</div>
 				
-				<div class="panel panel-default">
+				<div ng-controller="map" class="panel panel-default">
 				    <app-map style="height:400px;margin:12px;box-shadow:0 3px 25px black;"
         				center="loc"
         				markers="airports"> 
